@@ -265,9 +265,6 @@ header {
     text-align: justify;
 }
 
-.Description .feature ul > li {
-    list-style-image: url(Img/star.jpg);
-}
 
 .Description .feature ol {
     list-style-type: none;
@@ -453,7 +450,6 @@ td {
 
 .header {
     min-height: 100px;
-    background-image: url(img/ornament.jpg);
     border-bottom: 1px solid #eee;
     /*box-sizing: border-box;
     */
