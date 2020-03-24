@@ -62,7 +62,7 @@ ROOT_URLCONF = 'StarWars.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['StarWars/templates'],
+        'DIRS': ['StarWars/StarWars/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
