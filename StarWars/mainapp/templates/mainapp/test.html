@@ -1,0 +1,88 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block page_title %} Тестовое испытание
+{% endblock %}
+{% block page_styles %}
+<link rel="stylesheet" href="{% static 'StarWars/style.css' %}">
+{% endblock %}
+
+{% block script %}
+<script>
+        function fmSubmit() {
+        let list = [];
+    let row_data, class_el, value_el, id_el;
+
+    table = document.querySelector('#test');
+    for (let row of table.rows) {
+    if (row.getAttribute('class') != "table-header") {
+<!--        row_data = new Map();-->
+            row_data = {};
+        for (let cell of row.cells) {
+            id_el = cell.getAttribute('id');
+            class_el = cell.getAttribute('class');
+            if (id_el) {
+                row_data[class_el]=id_el;
+            }
+            else {
+                let inputs = cell.getElementsByTagName('input');
+
+                for (let input of inputs) {
+                    if (input.checked) {
+<!--                        row_data.set(class_el, input.value);-->
+                            row_data[class_el]=input.value;
+                    }
+                }
+            }
+        }
+
+        list.push(row_data);
+    }
+    }
+
+        alert("Готово! В случае положительного ответа Вам придет приглашение по email");
+        document.getElementById("data").value = JSON.stringify(list);
+
+    }
+
+</script>
+{% endblock %}
+
+{% block page_content %}
+{{ block.super }}
+<div>
+    <main class="main">
+        <form action="{% url 'main:save_test' recruit.id %}" method="post" onsubmit="fmSubmit()">
+            {% csrf_token %}
+            <table id="test" border="1">
+                <caption>Вступительный тест</caption>
+                <tr class="table-header">
+                    <th>Вопрос</th>
+                    <th>Ответ</th>
+                </tr>
+                {% for t in test %}
+                <tr>
+                    <td id="{{ t.question.id }}" class="question">
+                        {{t.question.text}}
+                    </td>
+                    <td class="answer">
+                        <label>
+                            <input type="radio" name="{{ t.question.id }}" value="Да" required>Да
+                        </label>
+                        <label>
+                            <input type="radio" name="{{ t.question.id }}" value="Нет">Нет
+                        </label>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <input type="hidden" id="data" name="data">
+            <input type="submit" value="Отправить" class="send-button">
+        </form>
+
+    </main>
+
+</div>
+{% endblock %}

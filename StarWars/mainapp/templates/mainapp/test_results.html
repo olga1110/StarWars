@@ -1,0 +1,44 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block page_title %} Результаты теста {% endblock %}
+{% block page_styles %}
+<link rel="stylesheet" href="{% static 'StarWars/style.css' %}">
+
+{% endblock %}
+
+{% block script %}
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+{% endblock %}
+
+{% block page_content %}
+
+{{ block.super }}
+
+<table border="1">
+    <caption>Тест рекрута {{results.0.recruit.name}}</caption>
+    <tr>
+        <th>Вопрос</th>
+        <th>Ответ</th>
+    </tr>
+    {% for r in results %}
+    <tr>
+        <td>
+            {{r.question.text}}
+        </td>
+        <td>
+            {{r.answer}}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<form action="{% url 'main:recruit_approve' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" id="recruit" name="recruit" value={{results.0.recruit.id}}>
+    <input type="hidden" id="sith" name="sith" value={{sith}}>
+    <input type="submit" value="Зачислить" class="send-button">
+</form>
+
+{% endblock %}

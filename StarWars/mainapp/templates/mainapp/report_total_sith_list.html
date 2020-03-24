@@ -1,0 +1,38 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block page_title %} Статистика. Количество Рук тени {% endblock %}
+{% block page_styles %}
+<link rel="stylesheet" href="{% static 'StarWars/style.css' %}">
+
+{% endblock %}
+
+{% block script %}
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+{% endblock %}
+
+{% block page_content %}
+
+{{ block.super }}
+
+<table border="1">
+    <caption>Статистика по ситхам в разрезе Рук тени</caption>
+    <tr>
+        <th>Ситх</th>
+        <th>Количество Рук тени</th>
+    </tr>
+    {% for r in results %}
+    <tr>
+        <td>
+            {{r.sith__name}}
+        </td>
+        <td>
+            {{r.recr_count}}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

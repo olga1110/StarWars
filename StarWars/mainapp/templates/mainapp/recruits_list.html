@@ -1,0 +1,34 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block page_title %} Список рекрутов {% endblock %}
+{% block page_styles %}
+    <link rel="stylesheet" href="{% static 'StarWars/style.css' %}">
+
+{% endblock %}
+
+{% block script %}
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+{% endblock %}
+
+{% block page_content %}
+
+    {{ block.super }}
+<h2><b>Кандидаты к зачислению</b></h2>
+<ul>
+    {% for r in recruits %}
+
+        <a href="{% url 'main:recruit_test_results' r.recruit.id %}">
+            <li>  {{ r.recruit.name }} </li>
+        </a>
+    {% empty %}
+    <div>
+        Рекруты к зачислению отсуствуют :(
+    </div>
+
+    {% endfor %}
+  </ul>
+
+{% endblock %}

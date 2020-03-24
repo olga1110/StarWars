@@ -1,0 +1,29 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block page_title %} Статистика. Ситхи с несколькими учениками {% endblock %}
+{% block page_styles %}
+<link rel="stylesheet" href="{% static 'StarWars/style.css' %}">
+
+{% endblock %}
+
+{% block script %}
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+{% endblock %}
+
+{% block page_content %}
+
+{{ block.super }}
+
+<div class="report-sith-list">
+    <h2><b>Список ситхов с несколькими учениками</b></h2>
+    {% for r in results %}
+    <li>
+        {{r.sith__name}}
+    </li>
+    {% endfor %}
+</div>
+
+{% endblock %}

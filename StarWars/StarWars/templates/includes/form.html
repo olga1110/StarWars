@@ -1,0 +1,31 @@
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for err in forms.not_field_errors %}
+        <div class="alert alert-danger" role="alert">
+            <span>{{ err }}</span>
+        </div>
+    {% endfor %}
+
+    <div class="form-group">
+        {% for field in form %}
+
+            <div class="form-field">
+                <label for="{{ field.name }}">
+                    {{ field.label }}:
+                </label>
+                {{ field }}
+            </div>
+        {% endfor %}
+
+    <div class="OK_button">
+        <input type="submit" value="{{ OK_text }}">
+    </div>
+    </div>
+    {% for field in form %}
+        {% if field.errors|length > 0 %}
+            {% for err in field.errors %}
+                <small class="form-text">{{ err }}</small>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+</form>

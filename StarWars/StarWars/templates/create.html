@@ -1,0 +1,16 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block page_title %} {{ title }} {% endblock %}
+{% block page_styles %}
+<link rel="stylesheet" href="{% static 'StarWars/style.css' %}">
+{% endblock %}
+
+{% block page_content %}
+{% include 'includes/form.html' %}
+
+{% endblock %}
+
+
+

@@ -1,0 +1,42 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block page_title %} Добро пожаловать!  {% endblock %}
+{% block page_styles %}
+<link rel="stylesheet" href="{% static 'StarWars/style.css' %}">
+
+{% endblock %}
+
+{% block script %}
+<script>
+    function ShowList() {
+        document.location=document.getElementById('sith_list').options[document.getElementById('sith_list').selectedIndex].value;
+    }
+
+</script>
+
+{% endblock %}
+
+{% block page_content %}
+
+{{ block.super }}
+<!--<form method="POST" enctype="multipart/form-data">-->
+<p class="your-name"><b>Ваше имя:</b></p>
+<form>
+    {% csrf_token %}
+    <select id="sith_list">
+        {% for s in sith %}
+        <option value="{% url 'main:recruits_list' s.name %}">
+            {{ s.name }}
+        </option>
+        {% endfor %}
+    </select>
+    <div class="OK_button">
+        <input type="button" value="Выбрать" onClick="ShowList();">
+    </div>
+
+</form>
+{% endblock %}
+
+

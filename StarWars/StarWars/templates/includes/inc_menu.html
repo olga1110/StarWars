@@ -1,0 +1,35 @@
+{% load static %}
+
+<nav>
+    <ul class="menu">
+        <li><a href="{% url 'main:start_page' %}">Главная</a></li>
+        <li>
+            <div class="btn-group">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                    Статистика
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{% url 'main:report_total_sith_list' %}">Статистика по ситхам в
+                        разрезе Рук тени</a>
+                    <a class="dropdown-item" href="{% url 'main:report_sith_list' %}">Список ситхов с несколькими
+                        учениками</a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="btn-group">
+                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                    Rest-API
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/api/planets">Планеты</a>
+                    <a class="dropdown-item" href="/api/siths">Ситхи</a>
+                    <a class="dropdown-item" href="/api/recruits">Рекруты</a>
+                </div>
+            </div>
+        </li>
+        <li><a href="/admin/">Настройка</a></li>
+    </ul>
+</nav>

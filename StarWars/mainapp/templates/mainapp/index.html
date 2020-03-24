@@ -1,0 +1,38 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block page_title %} Служба рекрутинга  {% endblock %}
+{% block page_styles %}
+<link rel="stylesheet" href="{% static 'StarWars/style.css' %}">
+
+{% endblock %}
+
+{% block script %}
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+{% if message %}
+<script>
+        alert("{{ message }}");
+
+</script>
+{% endif %}
+
+{% endblock %}
+
+{% block page_content %}
+
+{{ block.super }}
+<div class="main-choice">
+
+    <form action="{% url 'main:recruits_create' %}">
+        <input type="submit" value="Для Рекрутов" id="subm1"/>
+    </form>
+
+    <form action="{% url 'main:sith_list' %}">
+        <input type="submit" value="Для Ситхов" id="subm2"/>
+    </form>
+
+</div>
+
+{% endblock %}
+
