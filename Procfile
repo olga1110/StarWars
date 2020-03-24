@@ -1,1 +1,3 @@
-web: gunicorn StarWars.wsgi --log-file -
+web: gunicorn --pythonpath StarWars StarWars.wsgi --log-file -
+
+
